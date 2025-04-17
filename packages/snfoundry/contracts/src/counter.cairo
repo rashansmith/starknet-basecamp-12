@@ -4,7 +4,7 @@ pub trait ICounter<TContractState> {
         self: @TContractState,
     ) -> u32; // view function - doesn't modify the state - no gas costs, etc
     fn increase_counter(ref self: TContractState); // mutate the state - gas costs, etc
-    fn decarease_counter(ref self: TContractState);
+    fn decrease_counter(ref self: TContractState);
     fn reset_counter(ref self: TContractState); // mutate the state - gas costs, etc
 }
 
