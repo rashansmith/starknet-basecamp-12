@@ -31,11 +31,11 @@ pub mod Counter {
     }
 
     // Here the constructor is initialized with a default value of 0
-    // #[constructor] 
-    // fn constructor(ref self: ContractState, owner: ContractAddress) {
-    //    self.counter.write(0);
-    //    self.ownable.initializer(owner);
-    // }
+    #[constructor] 
+    fn constructor(ref self: ContractState, owner: ContractAddress) {
+       self.counter.write(0);
+       self.ownable.initializer(owner);
+    }
 
     // In order to use this method we need to update deploy.ts to accept an init_value
     // deploy.ts:
@@ -45,30 +45,29 @@ pub mod Counter {
         //      init_value: 0,
         // },
 
-    #[constructor] 
-    fn constructor(ref self: ContractState, init_value: u32, owner: ContractAddress) {
-       self.counter.write(init_value);
-       self.ownable.initializer(owner);
-    }
+    // #[constructor] 
+    // fn constructor(ref self: ContractState, int_value: u32, owner: ContractAddress) {
+    //    self.counter.write(int_value);
+    //    self.ownable.initializer(owner);
+    // }
 
     #[event]
     #[derive(Drop, starknet::Event)]
     pub enum Event {
         Increased: Increased,
         Decreased: Decreased,
-
         #[flat]
         OwnableEvent: OwnableComponent::Event
     }
 
     #[derive(Drop, starknet::Event)]
     pub struct Increased {
-        pub account:ContractAddress
+        account:ContractAddress
     }
 
     #[derive(Drop, starknet::Event)]
     pub struct Decreased {
-        pub account:ContractAddress
+        account:ContractAddress
     }
 
     pub mod Error {

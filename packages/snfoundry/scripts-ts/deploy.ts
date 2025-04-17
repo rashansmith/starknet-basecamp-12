@@ -45,7 +45,6 @@ const deployScript = async (): Promise<void> => {
   await deployContract({
     contract: "Counter",
     constructorArgs: {
-      init_value: 1,
       owner: deployer.address,
     },
   });
