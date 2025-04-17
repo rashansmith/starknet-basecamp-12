@@ -30,21 +30,6 @@ pub mod Counter {
         ownable: OwnableComponent::Storage,
     }
 
-    // Here the constructor is initialized with a default value of 0
-    // #[constructor] 
-    // fn constructor(ref self: ContractState, owner: ContractAddress) {
-    //    self.counter.write(0);
-    //    self.ownable.initializer(owner);
-    // }
-
-    // In order to use this method we need to update deploy.ts to accept an init_value
-    // deploy.ts:
-        // contract: "Counter",
-        //      constructorArgs: {
-        //      owner: deployer.address,
-        //      init_value: 0,
-        // },
-
     #[constructor] 
     fn constructor(ref self: ContractState, init_value: u32, owner: ContractAddress) {
        self.counter.write(init_value);
